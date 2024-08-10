@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Item</title>
+    <link rel="stylesheet" href="sell.css">
+</head>
+<body>
+    <div class="full-screen-container">
+        <div id="sell-page" class="form-page">
+            <h2 class="form-title">Sell Your Item</h2>
+            <form id="sell-form">
+                <div class="input-group">
+                    <label for="item-photo">Item Photo</label>
+                    <input type="file" id="item-photo" accept="image/*" onchange="previewImage()" required>
+                    <img id="photo-preview" src="#" alt="Photo Preview" style="display:none;">
+                </div>
+                <div class="input-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" placeholder="Enter the name of your item" required>
+                </div>
+                <div class="input-group">
+                    <label for="item-category">Category</label>
+                    <div class="category-selector" onclick="toggleDropdown()">
+                        <div id="selected-category" class="selected-option">Select a category</div>
+                        <div id="category-dropdown" class="dropdown-content">
+                            <div class="dropdown-item" data-category="electronics">Electronics</div>
+                            <div class="dropdown-item" data-category="clothing">Clothing</div>
+                            <div class="dropdown-item" data-category="home">Home & Garden</div>
+                            <div class="dropdown-item" data-category="toys">Toys & Games</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="item-price">Price</label>
+                    <input type="number" id="item-price" placeholder="Enter the price" min="1" step="1" required>
+                </div>
+                <div class="input-group">
+                    <label for="item-description">Description</label>
+                    <textarea id="item-description" placeholder="Enter a description of your item" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="form-btn">Publish</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('category-dropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function selectCategory(category) {
+            const selectedCategory = document.getElementById('selected-category');
+            selectedCategory.textContent = category.textContent;
+            document.getElementById('category-dropdown').classList.remove('show');
+        }
+
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function() {
+                selectCategory(this);
+            });
+        });
+
+        function previewImage() {
+            const file = document.getElementById('item-photo').files[0];
+            const photoPreview = document.getElementById('photo-preview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    photoPreview.src = e.target.result;
+                    photoPreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                photoPreview.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

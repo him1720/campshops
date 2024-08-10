@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title" id="login-title">Login</h2>
+            <h2 class="form-title" id="signup-title">Sign Up</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="user-id">User ID</label>
+                    <input type="text" id="user-id" placeholder="Enter your User ID" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your Password" required>
+                </div>
+                <button type="submit" class="form-btn">Login</button>
+                <p class="switch-form">Don't have an account? <a href="#" onclick="switchForm('signup')">Sign Up</a></p>
+            </form>
+
+            <form id="signup-form" style="display:none;">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" required>
+                </div>
+                <div class="input-group">
+                    <label for="user-id-signup">User ID</label>
+                    <input type="text" id="user-id-signup" placeholder="Enter your User ID" required>
+                </div>
+                <div class="input-group">
+                    <label for="password-signup">Password</label>
+                    <input type="password" id="password-signup" placeholder="Create a Password" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your Phone Number" required>
+                </div>
+                <button type="submit" class="form-btn">Sign Up</button>
+                <p class="switch-form">Already have an account? <a href="#" onclick="switchForm('login')">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function switchForm(form) {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const loginTitle = document.getElementById('login-title');
+            const signupTitle = document.getElementById('signup-title');
+            
+            if (form === 'signup') {
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+                signupTitle.style.display = 'block';
+                loginTitle.style.display = 'none';
+            } else {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                signupTitle.style.display = 'none';
+                loginTitle.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
